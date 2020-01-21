@@ -1,0 +1,29 @@
+{
+  "name": "egg-onion",
+  "version": "1.0.0",
+  "description": "egg-onion project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syunyun/egg-onion.git"
+  },
+  "keywords": [
+    "egg-onion",
+    "nugu",
+    "proxy-server"
+  ],
+  "author": "sangyunpark,dongjunlim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/syunyun/egg-onion/issues"
+  },
+  "homepage": "https://github.com/syunyun/egg-onion#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "csv-parser": "^2.3.2",
+    "express": "^4.17.1"
+  }
+}
