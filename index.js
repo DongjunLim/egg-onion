@@ -5,10 +5,6 @@ const bodyParser = require('body-parser');
 const apiRouter = require('./routes/index');
 const app = express();
 const CsvParser = require('./nugu/CsvParser');
-const parser = new CsvParser();
-const result = parser.parseCsv("Receipe");
-
-
 
 app.use(bodyParser.json());
 app.use('/api',apiRouter);
