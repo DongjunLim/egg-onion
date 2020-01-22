@@ -8,7 +8,4 @@
 # 요구사항
 
 
-- CsvParser
-- Receipe
-- Ingredient
-- 
+#  
