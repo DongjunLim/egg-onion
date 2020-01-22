@@ -2,6 +2,10 @@ const User = require('./User');
 
 
 
+/**
+ * @author Sang Yun Park
+ * @date 2020-01-22
+ */
 module.exports.nuguService =  async (payload) => {
     
     //const {action,event,context} = payload;
