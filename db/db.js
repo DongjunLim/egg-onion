@@ -1,6 +1,11 @@
 const CsvParser = require('./CsvParser');
 const parser = new CsvParser();
 
+
+/**
+ * @author Sang Yun Park
+ * @date 2020-01-22
+ */
 module.exports = db = {
     
     

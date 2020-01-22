@@ -1,3 +1,7 @@
+/**
+ * @author Sang Yun Park
+ * @date 2020-01-22
+ */
 module.exports = {
     
     typeError : {
