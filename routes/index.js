@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const {nuguService} = require('../nugu/nuguService');
 
-router.post('/answer.UserResponse_second_ingre', async (req,res) => {
+router.post('/getReceipe.threeIngredient', async (req,res) => {
     const payload = req.body;
     const result = await nuguService(payload);
      console.log(payload.action.parameters);
     //if(result == null) res.status(500).end();
-    res.json(result);
+    const receipe = {receipeName : "김치 볶음밥"};
+    res.json(receipe);
 })
 
 
