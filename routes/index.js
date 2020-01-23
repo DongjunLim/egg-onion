@@ -9,7 +9,8 @@ router.post('/getReceipe.threeIngredient', async (req,res) => {
     //if(result == null) res.status(500).end();
     const receipe = {"receipeName" : "김치 볶음밥"};
     console.log(receipe);
-    res.json(receipe);
+    console.log(result)
+    //res.json(receipe);
 })
 
 
