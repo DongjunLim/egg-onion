@@ -10,7 +10,7 @@ module.exports = db = {
     
     
     getIngredients : async () => {
-        const ingredients = await parser.parseCsv("Ingredient");
+        const ingredients = await parser.parseCsv("Ingredient_data");
         return ingredients;
     
     },

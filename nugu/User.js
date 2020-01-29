@@ -1,6 +1,4 @@
-const Ingredient = require('./Ingredient');
-const Receipe = require('./Receipe');
-const db = require('../db/db');
+const IngredientList = require('./Ingredient');
 
 
 /**
@@ -11,9 +9,11 @@ const db = require('../db/db');
  module.exports = class User {
     
     constructor() {
+
         this.id = null;
         this.ingredients = [];
-        this.MAX_INGREDIENT_COUNT = 6; 
+        this.MAX_INGREDIENT_COUNT = 3; 
+
     }
 
     set setId(id) {
@@ -24,13 +24,26 @@ const db = require('../db/db');
         return this.id;
     }
     
-    async setIngredients() {
-        const ingredients = await db.getIngredients();
-        return ingredients;
+    set setUserIngredients(ingredients) {
+        if(this.validate(ingredients)) {
+            this.ingredients = ingredients;
+        }
     }
 
-    findReceipeCode() {
+    validate(array) {
+        if(array.length > this.MAX_INGREDIENT_COUNT) return false;
+        return true;
+    }
 
+    async findReceipeCode() {
+
+        let ingredientList = [];
+        if(ingredientList.length != 0) {
+            ingredientList = await IngredientList.setIngredients();
+        }
+
+        console.log(ingredientList);
+        
     }
 
  }

@@ -1,3 +1,6 @@
+const db = require('../db/db');
+
+
 /**
  * @author Sang Yun Park
  * @date 2020-01-22
@@ -5,24 +8,17 @@
 module.exports = class Ingredient {
     
     constructor() {
-        this.ingredientName = null;
-        this.receipeCode = null;
-        
+        this.ingredients = null;
     }
 
-    get getIngredientName() {
-        return this.ingredientName;
-    }
-    get getReceipeCode() {
-        return this.receipeCode;
+    static async setIngredients() {
+        this.ingredients = await db.getIngredients;
     }
 
-    set setIngredientName(ingredientName) {
-        this.ingredientName = ingredientName;
+    static async getIngredients() {
+        return this.ingredients;
     }
-    set setReceipeCode(receipeCode) {
-        this.receipeCode = receipeCode;
-    }
+  
 
 
 }
