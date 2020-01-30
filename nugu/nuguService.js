@@ -17,7 +17,7 @@ module.exports.nuguService = {
         const user = new User();
         user.setId = id;
         user.setUserIngredients = nameOfIngredient.split('|');
-        await user.findReceipeCode();
+        await user.findReceipe();
     
     },
     

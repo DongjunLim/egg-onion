@@ -35,15 +35,32 @@ const IngredientList = require('./Ingredient');
         return true;
     }
 
-    async findReceipeCode() {
+    async findReceipe() {
+
 
         let ingredientList = [];
-        if(ingredientList.length != 0) {
+        let sortedByEntity = new Map();
+
+        if(ingredientList.length == 0) {
             ingredientList = await IngredientList.setIngredients();
         }
 
-        console.log(ingredientList);
-        
+        this.ingredients.forEach(ingredientName => {
+            ingredientList.forEach(ingredient => {
+                if(ingredient["I-title"] === ingredientName) {
+                    
+                    const receipeCode = ingredient["I-Index"];
+                    const receipeCounts = ingredient["I-count"];
+                    sortedByEntity.set(receipeCode,receipeCounts);
+                
+                }
+            })       
+        })
+
+
+        for(let [key,value] of sortedByEntity) {
+            console.log(key.name, value);
+        }
     }
 
  }
