@@ -13,7 +13,8 @@ const db = require('../db/db');
 
         this.id = null;
         this.ingredients = [];
-        this.MAX_INGREDIENT_COUNT = 3;
+        this.receipes = null;
+	this.MAX_INGREDIENT_COUNT = 3;
         this.MAX_RECEIPE_COUNT = 6; 
 
     }
@@ -45,27 +46,30 @@ const db = require('../db/db');
 
         //filtered by ingredient entity
         this.ingredients.forEach(ingredientName => {
-            ingredientList.forEach(ingredient => {
-                if(ingredient["I-title"] === ingredientName) {
-                    
-                    const receipeCode = ingredient["I-index"];
+            ingredientList.forEach(ingredient => {;
+		 if(ingredient["I-title"] === ingredientName) {
+                       
+                    const receipeCode = ingredient["R-code"];
                     const receipeCounts = ingredient["I-count"];
-                    sortedByEntity.set(receipeCode,receipeCounts);
+                    filteredByEntity.set(receipeCode,receipeCounts);
                 
                 }
             })       
         })
 
         //filtered by ingredient counts
-        let filteredByCounts = [];
-        for(let [key,value] of sortedByEntity) {
-
+        let filteredByCounts = []
+	filteredByEntity[Symbol.iterator] = function* () {
+	   yield* [...this.entries()].sort((a,b) => a[1] - b[1]);
+	};
+        for(let [key,value] of filteredByEntity) {
+	   
             if(filteredByCounts.length < this.MAX_RECEIPE_COUNT) {
                 filteredByCounts.push(key);
             }			
 
         }
-
+	console.log(filteredByCounts);
         return filteredByCounts;
     }
 
@@ -75,24 +79,45 @@ const db = require('../db/db');
     async findReceipe() {
 
         
-        const filteredIngredientCode  =  await filterIngredientCode();
+        const filteredIngredientCode  =  await this.filterIngredientCode();
         const receipeList = await db.getReceipes();
-        const filteredReceipe = [];
-
+        const filteredReceipe = new Map();
+	
         filteredIngredientCode.forEach(code => {
             receipeList.forEach(receipe => {
                 const receipeCode = receipe["레시피 코드"];
                 const receipeName = receipe["레시피 이름"];
+  		
                 if(code === receipeCode) {
-                    filteredReceipe.push(receipeName);
+                    console.log(code,receipeCode,receipeName);
+		    filteredReceipe.set(receipeCode, receipeName);
                 }
             })
         })
-        
-        console.log(filteredReceipe);
-        return filteredReceipe;
 	
+
+        
+	this.receipes = filteredReceipe;
+      	
 	    
     }
+
+    getReceipes() {
+
+	let temp = [] ;
+	for(let [key,value] of this.receipes) {
+	   if(temp.length < 3) {
+		temp.push(value);
+		this.removeReceipe(key);
+	   }
+	}
+	return temp;
+
+    }
+
+    removeReceipe(key) {
+	this.receipes.delete(key);
+    }
+
 
  }
