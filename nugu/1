@@ -1,7 +1,6 @@
 const db = require('../db/db');
 
 
-
 /**
  * @author Sang Yun Park
  * @date 2020-01-22
@@ -39,37 +38,29 @@ const db = require('../db/db');
     async findReceipe() {
 
 
-        let ingredientList = await db.getIngredients();
+        let ingredientList = [];
         let sortedByEntity = new Map();
-	let sortedByCount = [];
-        
-	//filtered by ingredient entity
+
+        if(ingredientList.length == 0) {
+            ingredientList = await db.getIngredients;
+        }
+
         this.ingredients.forEach(ingredientName => {
             ingredientList.forEach(ingredient => {
                 if(ingredient["I-title"] === ingredientName) {
                     
-                    const receipeCode = ingredient["I-index"];
+                    const receipeCode = ingredient["I-Index"];
                     const receipeCounts = ingredient["I-count"];
-                    console.log(receipeCode);
-		    sortedByEntity.set(receipeCode,receipeCounts);
+                    sortedByEntity.set(receipeCode,receipeCounts);
                 
                 }
             })       
         })
 
-	
-	//filtered by ingredient count
+
         for(let [key,value] of sortedByEntity) {
-
-	    if(sortedByCount.length < 6) {
-		console.log(key);
-		sortedByCount.push(key);
-	    }			
-
+            console.log(key.name, value);
         }
-
-
-	console.log(sortedByCount);
     }
 
  }

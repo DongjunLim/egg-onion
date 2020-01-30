@@ -12,7 +12,7 @@ module.exports.nuguService = {
 
     getReceipes : async (parameters,session) => {
     
-        const {nameofingredient} = parameters.value;
+        const {nameofingredient} = parameters;
         const {id,isNew} = session;
         const user = new User();
         user.setId = id;
