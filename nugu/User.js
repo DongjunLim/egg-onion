@@ -1,4 +1,4 @@
-const IngredientList = require('./Ingredient');
+const db = require('../db/db');
 
 
 /**
@@ -42,7 +42,7 @@ const IngredientList = require('./Ingredient');
         let sortedByEntity = new Map();
 
         if(ingredientList.length == 0) {
-            ingredientList = await IngredientList.setIngredients();
+            ingredientList = await db.getIngredients;
         }
 
         this.ingredients.forEach(ingredientName => {

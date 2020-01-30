@@ -12,11 +12,11 @@ module.exports.nuguService = {
 
     getReceipes : async (parameters,session) => {
     
-        const {nameofingredient} = parameters;
+        const {nameofingredient} = parameters.value;
         const {id,isNew} = session;
         const user = new User();
         user.setId = id;
-        user.setUserIngredients = nameOfIngredient.split('|');
+        user.setUserIngredients = nameofingredient.value.split('|');
         await user.findReceipe();
     
     },
