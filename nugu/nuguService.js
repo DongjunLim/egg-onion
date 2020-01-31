@@ -47,7 +47,7 @@ module.exports.nuguService = {
 		}
 		console.log(filteredUser);
 		const output = {};
-		const parameterItems = ["first_output_menu","second_output_menu","third_output_menu"];
+		const parameterItems = ["fourth_output_menu","fifth_output_menu","sixth_output_menu"];
 
 		for(let i = 0; i < receipes.length; i++) {
 		   output[parameterItems[i]] = receipes[i];
