@@ -59,7 +59,7 @@ const db = require('../db/db');
                     
                     const mainIngredient = ingredient["I-title"]
                     const receipeCode = ingredient["R-code"];
-                    const receipeCounts = ingredient["I-count"];
+                    const receipeCounts = Number(ingredient["I-count"]);
                     
                     // 입력받은 재료와 등록된 재료와 같은 경우
                     if(mainIngredient === ingredientName) {
@@ -86,6 +86,8 @@ const db = require('../db/db');
         // 빈도수 기준으로 정렬
         const sortedByFrequency = new Map([...filteredByEntity.entries()].sort((a, b) => b[1].frequency - a[1].frequency));
         let filteredByFrequency = [];
+        
+                
 
         for(let [key,value] of sortedByFrequency) {
             if(filteredByFrequency.length < this.MAX_RECEIPE_COUNT) {
@@ -93,20 +95,21 @@ const db = require('../db/db');
             }			
 
         }
+	
 
         // 재료수 기준으로 정렬
         filteredByFrequency.sort((a,b) => (a.info.receipeCounts > b.info.receipeCounts) ? 1 : ((a.info.receipeCounts < b.info.receipeCounts) ? -1 : 0)); 
 
-
+       
         let filteredByCounts = [];
-        for(let [key,value] of filteredByFrequency) {
+        for(const receipeCode of filteredByFrequency) {
 	   
             if(filteredByCounts.length < this.MAX_RECEIPE_COUNT) {
-                filteredByCounts.push(key);
+                filteredByCounts.push(receipeCode);
             }			
 
         }
-	    console.log(filteredByCounts);
+
         return filteredByCounts;
     }
 
@@ -115,17 +118,20 @@ const db = require('../db/db');
     async findReceipe() {
 
         
-        const filteredIngredientCode  =  await this.filterIngredientCode();
-        const receipeList = await db.getReceipes();
+        const filteredIngredientInfo  =  await this.filterIngredientCode();
+	const receipeList = await db.getReceipes();
         const filteredReceipe = new Map();
-	
-        filteredIngredientCode.forEach(code => {
-            receipeList.forEach(receipe => {
+		
+
+
+        filteredIngredientInfo.forEach(info => {
+         
+	     receipeList.forEach(receipe => {
                 const receipeCode = receipe["레시피 코드"];
                 const receipeName = receipe["레시피 이름"];
   		
-                if(code === receipeCode) {
-                    console.log(code,receipeCode,receipeName);
+                if(info.receipeCode === receipeCode) {
+                  
 		    filteredReceipe.set(receipeCode, receipeName);
                 }
             })
