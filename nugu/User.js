@@ -147,13 +147,18 @@ const db = require('../db/db');
     getReceipes() {
 
         let temp = [] ;
-        for(let [key,value] of this.receipes) {
-        if(temp.length < 3) {
-            temp.push(value);
-            this.removeReceipe(key);
+        if(this.receipes && this.receipes.length){
+            for(let [key,value] of this.receipes) {
+                if(temp.length < 3) {
+                    temp.push(value);
+                    this.removeReceipe(key);
+                }
+            }
+            return temp;
         }
-        }
-        return temp;
+        else    
+            return null;
+        
 
     }
 

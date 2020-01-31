@@ -24,8 +24,9 @@ router.post('/ask.another.menu', async (req,res) => {
     const {action,context} = req.body;
     const {parameters} = action;
     const {session} = context
-    const output = await nuguService.getRemain;
-    
+    const output = await nuguService.getMoreReceipes(parameters, session);
+    nugu.setOutput(output);
+    nugu.response();
     
 })
 

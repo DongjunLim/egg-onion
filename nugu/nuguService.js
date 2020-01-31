@@ -35,14 +35,27 @@ module.exports.nuguService = {
     
     getMoreReceipes : async(parameters,session) => {
     
-	const {id} = session;
-	const filteredUser = userList.filter(user => {
-		if(user.getId == id) {
-		   return user;
-		}	
-	})
-	console.log(filteredUser);
-    }
+		const {id} = session;
+		const filteredUser = userList.filter(user => {
+			if(user.getId == id) {
+			   return user;
+			}
+		})
+		const receipes = filteredUser.getReceipes()
+		if (receipes === null){
+			//예외상황시 return output 정의해야함
+		}
+		console.log(filteredUser);
+		const output = {};
+		const parameterItems = ["first_output_menu","second_output_menu","third_output_menu"];
 
+		for(let i = 0; i < receipes.length; i++) {
+		   output[parameterItems[i]] = receipes[i];
+		}
+		delete userList(filteredUser)
+		return output;
+
+	
+	}
 }
 
