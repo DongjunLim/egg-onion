@@ -17,44 +17,51 @@ module.exports.nuguService = {
 
         const user = new User();
         
-	user.setId = id;
+		user.setId = id;
         user.setUserIngredients = nameofingredient.value.split('|');
         await user.findReceipe();
     	const receipes = user.getReceipes();
 	
-	const output = {};
-	const parameterItems = ["first_output_menu","second_output_menu","third_output_menu"];
+		const output = {};
+		const parameterItems = ["first_output_menu","second_output_menu","third_output_menu"];
 	
-	for(let i = 0; i < receipes.length; i++) {
-	   output[parameterItems[i]] = receipes[i];
-	}
-	userList.push(user);;
-	return output;
+		for(let i = 0; i < receipes.length; i++) {
+	   		output[parameterItems[i]] = receipes[i];
+		}
+		userList.push(user);;
+		return output;
 	
     },
     
     getMoreReceipes : async(parameters,session) => {
     
 		const {id} = session;
-		const filteredUser = userList.filter(user => {
+		const [filteredUser] = userList.filter(user => {
 			if(user.getId == id) {
 			   return user;
 			}
 		})
+
 		const receipes = filteredUser.getReceipes()
 		if (receipes === null){
 			//예외상황시 return output 정의해야함
 		}
-		console.log(filteredUser);
+	
 		const output = {};
 		const parameterItems = ["fourth_output_menu","fifth_output_menu","sixth_output_menu"];
 
 		for(let i = 0; i < receipes.length; i++) {
 		   output[parameterItems[i]] = receipes[i];
 		}
-		delete userList(filteredUser)
-		return output;
+		
+		const removeUserIndex = userList.findIndex(user => {
+			if(user.getId == id) {
+				return user;
+			}
+		})
+		userList.splice(removeUserIndex,1);
 
+		return output;
 	
 	}
 }
