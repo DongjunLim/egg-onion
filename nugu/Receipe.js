@@ -34,6 +34,6 @@ module.exports = class Receipe {
 	
 
         
-	    return filteredReceipe;
+	    return filteredReceipes;
     }
 }
