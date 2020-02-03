@@ -13,11 +13,11 @@ router.post('/answer.input_ingredient', async (req,res) => {
     console.log(output);
     if(!output){
         nugu.setResultCode("EMPTY-RECEIPE");
-        nugu.responseException();
+        return nugu.responseException();
     }
     else{
         nugu.setOutput(output);
-        nugu.response();
+        return nugu.response();
     }
 
 
@@ -34,11 +34,11 @@ router.post('/ask.another.menu', async (req,res) => {
     console.log(output);
     if(!output){
         nugu.setResultCode("EMPTY-RECEIPE");
-        nugu.responseException();
+        return nugu.responseException();
     }
     else{
         nugu.setOutput(output);
-        nugu.response();
+        return nugu.response();
     }
     
 })

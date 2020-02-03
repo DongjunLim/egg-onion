@@ -42,11 +42,11 @@ const receipe = new Receipe();
     }
 
          
-    async getReceipes() {
-
-        const filteredIngredientInfo = await ingredient.filterIngredientCode(this.ingredients);
-        this.receipes = await receipe.findReceipe(filteredIngredientInfo);
-
+    async getReceipes(isFirst) {
+	if(isFirst){
+        	const filteredIngredientInfo = await ingredient.filterIngredientCode(this.ingredients);
+        	this.receipes = await receipe.findReceipe(filteredIngredientInfo);
+	}
         let temp = [] ;
         
         if(this.receipes.length === 0) return null;

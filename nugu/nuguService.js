@@ -20,7 +20,7 @@ module.exports.nuguService = {
 		user.setId = id;
         user.setUserIngredients = nameofingredient.value.split('|');
        
-		const receipes = await user.getReceipes();
+		const receipes = await user.getReceipes(isFirst=true);
 		
 		if (!receipes)	return null;
 	
@@ -44,7 +44,7 @@ module.exports.nuguService = {
 			}
 		})
 
-		const receipes = await filteredUser.getReceipes()
+		const receipes = await filteredUser.getReceipes(isFirst=false)
 
 		if (!receipes)	return null;
 	
