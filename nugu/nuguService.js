@@ -20,7 +20,9 @@ module.exports.nuguService = {
 		user.setId = id;
         user.setUserIngredients = nameofingredient.value.split('|');
        
-    	const receipes = await user.getReceipes();
+		const receipes = await user.getReceipes();
+		
+		if (!receipes)	return null;
 	
 		const output = {};
 		const parameterItems = ["first_output_menu","second_output_menu","third_output_menu"];
@@ -43,9 +45,8 @@ module.exports.nuguService = {
 		})
 
 		const receipes = await filteredUser.getReceipes()
-		if (receipes === null){
-			//예외상황시 return output 정의해야함
-		}
+
+		if (!receipes)	return null;
 	
 		const output = {};
 		const parameterItems = ["fourth_output_menu","fifth_output_menu","sixth_output_menu"];

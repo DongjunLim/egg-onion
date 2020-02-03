@@ -9,10 +9,16 @@ router.post('/answer.input_ingredient', async (req,res) => {
     const {action,context} = req.body;
     const {parameters} = action;
     const {session} = context;
-    const output  = await nuguService.getReceipes(parameters,session);;
+    const output  = await nuguService.getReceipes(parameters,session);
     console.log(output);
-    nugu.setOutput(output);
-    nugu.response();
+    if(!output){
+        nugu.setResultCode("EMPTY-RECEIPE");
+        nugu.responseException();
+    }
+    else{
+        nugu.setOutput(output);
+        nugu.response();
+    }
 
 
 })
@@ -25,8 +31,15 @@ router.post('/ask.another.menu', async (req,res) => {
     const {parameters} = action;
     const {session} = context
     const output = await nuguService.getMoreReceipes(parameters, session);
-    nugu.setOutput(output);
-    nugu.response();
+    console.log(output);
+    if(!output){
+        nugu.setResultCode("EMPTY-RECEIPE");
+        nugu.responseException();
+    }
+    else{
+        nugu.setOutput(output);
+        nugu.response();
+    }
     
 })
 
