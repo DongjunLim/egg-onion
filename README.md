@@ -37,7 +37,7 @@ SKT NUGU 음성인식 스피커와 Back-end 서버를 연동시킨 프로젝트�
 <br/>
 <br/>
 
-# :computer: Server Engironment
+# :computer: Server Environment
 
 TODO
 
