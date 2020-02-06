@@ -3,6 +3,8 @@
 
 SKT NUGU 음성인식 스피커와 Back-end 서버를 연동시킨 프로젝트입니다. NUGU 스피커에게 식재료를 말하면 적절한 레시피 응답합니다.
 
+<br/>
+<br/>
 
 #  👨‍👩‍👧‍👦 Contribution
 
@@ -18,7 +20,8 @@ SKT NUGU 음성인식 스피커와 Back-end 서버를 연동시킨 프로젝트�
 
 임동준 [(DongjunLim)](https://github.com/DongjunLim)
 
-
+<br/>
+<br/>
 
 # :orange_book: terminology
 
@@ -31,12 +34,15 @@ SKT NUGU 음성인식 스피커와 Back-end 서버를 연동시킨 프로젝트�
 | Ingredient | 사용자가 발화하는 레시피 |
 
 
-
+<br/>
+<br/>
 
 # :computer: Server Engironment
 
 TODO
 
+<br/>
+<br/>
 
 # :computer: Service Architecture
 
@@ -44,7 +50,10 @@ TODO
 ![image.png](https://images.velog.io/post-images/pa324/ab04f1b0-3cd5-11ea-b5cc-1d04056e8231/image.png)
 
 
-### How to work egg-onion service?
+<br/>
+<br/>
+
+### :running: How to work egg-onion service?
 
 &nbsp; `계란파 켜주십시오`라는 사용자 Intent에 의해`answer.start.service`액션이 실행되면서  egg-onion 서비스가 시작이 됩니다. 계란파 서비스가 시작되면 사용자는 자신이 가지고 있는 재료를 NUGU에게 말할 수 있습니다.
 
@@ -53,6 +62,8 @@ TODO
 
 `Back-end Proxy Server`에서는 요청으로 받은 식재료를 이용해서 레시피를 필터링하고 최종적으로 NUGU 에게 응답합니다.
 
+<br/>
+<br/>
 
 ## NUGU Play Builder 
 
@@ -69,8 +80,8 @@ finish.conversation : NUGU와 대화 종료
 ![image.png](https://images.velog.io/post-images/pa324/59bfe7f0-48de-11ea-ab15-a1fea545fd23/image.png)
 
 
-
-
+<br/>
+<br/>
 
 ## Backend 
 
@@ -80,7 +91,8 @@ finish.conversation : NUGU와 대화 종료
 
 
 
-
+<br/>
+<br/>
 
 
 # Improvements
